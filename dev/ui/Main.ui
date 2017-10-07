@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1200</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1200</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Graph Application</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>images.png</normaloff>images.png</iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPlainTextEdit" name="timeRangeInput">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>180</y>
+      <width>221</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>221</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>221</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="horizontalScrollBarPolicy">
+     <enum>Qt::ScrollBarAsNeeded</enum>
+    </property>
+    <property name="plainText">
+     <string>100,100</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="timeRangeLbl">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>160</y>
+      <width>331</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Time Range (Comma Seperated Integers)</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="decayInput">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>240</y>
+      <width>221</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>221</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>221</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="plainText">
+     <string>-3,-3</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="decayLbl">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>220</y>
+      <width>401</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Decay (Comma Seperated Integers)</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="runSimulationBtn">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>510</y>
+      <width>101</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string extracomment="Will generate a graph from the given input"/>
+    </property>
+    <property name="text">
+     <string>Run</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="samplingLbl">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>280</y>
+      <width>401</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Sampling Portion (single Integer)</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="samplingInput">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>300</y>
+      <width>221</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>221</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>221</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="plainText">
+     <string>1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="loadingSpinnerLbl">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1191</width>
+      <height>751</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Loading...</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="loadingLbl">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>1191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Running Simulation, this may take a while</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="saveOutputBtn">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>710</y>
+      <width>85</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save Output</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="graphWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>20</y>
+      <width>881</width>
+      <height>691</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="expDecayEvalLbl">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>340</y>
+      <width>221</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Custom exponential decay function.  You can insert a single line funtion here, using the inputs t (time) and b (something), numpy is include so you can use any function available in that package.  If this field is empty it will use the default (exp(float(b) * float(t)))</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="expDecayEvalInput">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>460</y>
+      <width>221</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>221</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>221</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOff</enum>
+    </property>
+    <property name="plainText">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="printOptionsGroup">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>550</y>
+      <width>151</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QRadioButton" name="printMethodRawBtn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>95</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="text">
+      <string>Raw Output</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="printMethodSingleBtn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>80</y>
+       <width>95</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Single Line</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="printMethodMultiBtn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>95</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Multi Line</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="startFromGroupLbl_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Save Format</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="startFromGroup">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>550</y>
+      <width>121</width>
+      <height>151</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLabel" name="startFromGroupLbl">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>91</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Start from</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="startFrom0">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>95</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="startFrom1">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>95</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="normalisationBox">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>231</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QLabel" name="normalisationLbl">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>251</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Select Normalisation Method</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="normalisationMethodNone">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>95</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>None</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="normalisationMethod_1">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>95</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Method 1</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="normalisationMethod_2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>80</y>
+       <width>95</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Method 2</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="vclistSizeLbl">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>720</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Size of VCList:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="vclistSizeValueLbl">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>720</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="timeVolumeLbl">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>720</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Points Demanded:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="timeVolumeValueLbl">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>720</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dimensionsLbl">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>20</y>
+      <width>881</width>
+      <height>691</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>18</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Too many dimensions to create graph</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <zorder>loadingLbl</zorder>
+   <zorder>loadingSpinnerLbl</zorder>
+   <zorder>timeRangeLbl</zorder>
+   <zorder>decayLbl</zorder>
+   <zorder>samplingLbl</zorder>
+   <zorder>decayInput</zorder>
+   <zorder>timeRangeInput</zorder>
+   <zorder>graphWidget</zorder>
+   <zorder>runSimulationBtn</zorder>
+   <zorder>saveOutputBtn</zorder>
+   <zorder>expDecayEvalLbl</zorder>
+   <zorder>samplingInput</zorder>
+   <zorder>expDecayEvalInput</zorder>
+   <zorder>printOptionsGroup</zorder>
+   <zorder>startFromGroup</zorder>
+   <zorder>normalisationBox</zorder>
+   <zorder>vclistSizeLbl</zorder>
+   <zorder>vclistSizeValueLbl</zorder>
+   <zorder>timeVolumeLbl</zorder>
+   <zorder>timeVolumeValueLbl</zorder>
+   <zorder>dimensionsLbl</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
